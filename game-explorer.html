@@ -1,0 +1,22 @@
+
+<div class="game-explorer row">
+<table>
+<tr>
+    <td>
+        <div id="game-explorer" style="width: 400px"></div>
+    </td>
+    <td>
+        <button type="button" onclick="prev_move()">Previous Move</button>
+        <button type="button" onclick="reset()" >Reset</button>
+        <button type="button" onclick="next_move()">Next Move</button>
+    </td>
+</tr>
+<tr>
+    <td id="game_fen"></td>
+</tr>
+</table>
+<script src="assets/js/game-explorer-backend.js"></script>
+<script>
+    setup_game_board("{{ include.data_path }}");
+</script>
+</div>
