@@ -25,7 +25,7 @@ This is to go with work I did late last year. The main result was a series of ch
 
 The main summary of the results is shown in figure 1
 
-{%- include blog-image.html  url="assets/images/all_lineplot.svg" caption="Move matching accuracy for all the models compared with the targeted player's ELO rating" -%}
+![](assets/images/all_lineplot.svg)
 
 ## Widget Intro
 
