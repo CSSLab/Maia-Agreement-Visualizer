@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Maia Widgets
 tags:
   - Maia
@@ -15,10 +14,11 @@ authors: Reid
 
 ## Disclaimer
 
-This interactive widget is intended to be a supplement and inline with our blog post. It is aimed at the general reader, who we assume knows a little bit about chess. It is also still in development, I'm not very good at web dev, so there will be UI issues. The colours are not final either and are one of the things I want feedback on.
+This interactive widget is intended to be a supplement and inline with our blog post. It is aimed at the general reader, who we assume knows a little bit about chess. It is also still in development, I'm not very good at web dev, so there will be UI issues. The colours/CSS are not final either and are one of the things I want feedback on.
 
 Also, the chess board is a fixed width `400px` so weird things will happen if you view on a narrow screen.
 
+<!--
 ## Quick summary
 
 This is to go with work I did late last year. The main result was a series of chess engines, we called Maia, that can predict the next move a player will make with decent accuracy. The full blog post can be fond [here](/blog/2020/08/24/maia_chess_kdd/)
@@ -26,6 +26,7 @@ This is to go with work I did late last year. The main result was a series of ch
 The main summary of the results is shown in figure 1
 
 ![](assets/images/all_lineplot.svg)
+-->
 
 ## Widget Intro
 
@@ -41,11 +42,11 @@ The info field is incomplete, and will probably be a collapsible element. The ma
 
 ## Board Explore
 
-{% include_relative board-explorer.html data_path="data/base_data.json" %}
+{% include_relative board-explorer.html data_path="/assets/data/base_data.json" %}
 
 ## Game Explore
 
-{% include_relative game-explorer.html data_path="data/game_data.json" %}
+{% include_relative game-explorer.html data_path="/assets/data/game_data.json" %}
 
 ## What Maia Sees
 
