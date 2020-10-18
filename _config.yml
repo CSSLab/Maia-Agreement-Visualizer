@@ -20,12 +20,9 @@
 
 title: Maia Chess Interactive Visualizer
 email: reidmcy@cs.toronto.edu
-baseurl: "" # the subpath of your site, e.g. /blog
-
-permalink: pretty
+baseurl: "/Maia-Agreement-Visualizer" # the subpath of your site, e.g. /blog
 
 exclude:
   - Gemfile
   - Gemfile.lock
   - "*.sh"
-

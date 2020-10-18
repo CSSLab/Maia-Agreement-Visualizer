@@ -10,6 +10,7 @@ authors: Reid
 <link rel="stylesheet" href="assets/js/chessboardjs/css/chessboard-1.0.0.css" />
 <script src="assets/js/chessboardjs/js/chessboard-1.0.0.js"></script>
 
+<link rel="stylesheet" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
 
 ## Disclaimer
@@ -42,11 +43,11 @@ The info field is incomplete, and will probably be a collapsible element. The ma
 
 ## Board Explore
 
-{% include_relative board-explorer.html data_path="/assets/data/base_data.json" %}
+{% include_relative board-explorer.html data_path="assets/data/base_data.json" %}
 
 ## Game Explore
 
-{% include_relative game-explorer.html data_path="/assets/data/game_data.json" %}
+{% include_relative game-explorer.html data_path="assets/data/game_data.json" %}
 
 ## What Maia Sees
 
