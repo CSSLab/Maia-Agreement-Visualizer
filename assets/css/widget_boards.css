@@ -37,6 +37,15 @@
   width: 400px;
 }
 
+.board-drawing {
+  width: 400px;
+  height:396px;
+  margin-bottom: -400px;
+  position:relative;
+  z-index:1;
+}
+
+
 .other-controls {
   display: flex;
   flex-direction: column;
@@ -80,6 +89,8 @@
 .elo-selector {
   position: relative;
 }
+
+
 
 .material-slider {
   width: 10ch;

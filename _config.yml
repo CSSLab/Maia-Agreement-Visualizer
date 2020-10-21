@@ -21,7 +21,7 @@
 title: Maia Chess Interactive Visualizer
 email: reidmcy@cs.toronto.edu
 baseurl: "/Maia-Agreement-Visualizer" # the subpath of your site, e.g. /blog
-
+url: "https://csslab.github.io"
 exclude:
   - Gemfile
   - Gemfile.lock

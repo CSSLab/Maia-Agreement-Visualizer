@@ -143,23 +143,28 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         });
         var i;
         var square_size = calculateSquareSize()
+        $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id = "board-drawing-root" ><defs id="board-drawing-defs"></defs></svg >')
+
         for (i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
             $("#" + targets[i] + "_move").html(e_move)
 
             if (dat[targets[i] + "_correct"]) {
+                draw_board_arrow(e_move, 'green', targets[i]);
                 player_move = e_move;
-                $.find('#explorer-board .square-' + e_move.substring(0, 2))[0].className += ' highlight-correct'
-                $.find('#explorer-board .square-' + e_move.substring(2, 4))[0].className += ' highlight-correct'
+                //$.find('#explorer-board .square-' + e_move.substring(0, 2))[0].className += ' highlight-correct'
+                //$.find('#explorer-board .square-' + e_move.substring(2, 4))[0].className += ' highlight-correct'
                 /*$('#explorer-board .square-' + e_move.substring(2, 4)).append(
                         '<svg width="' +
                         square_size +
                         'px" height="' +
                     square_size + 'px"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" /></svg>')*/
             } else {
+                draw_board_arrow(e_move, 'red', targets[i]);
                 //$.find('#explorer-board .square-' + e_move.substring(0, 2))[0].className += ' highlight-' + targets[i]
                 //$.find('#explorer-board .square-' + e_move.substring(2, 4))[0].className += ' highlight-' + targets[i]
             }
+            /*
             var from_symbol = arrow_map_diagonal[e_move[1] > e_move[3]][e_move[0] > e_move[2]];
 
             if (e_move[1] == e_move[3]) {
@@ -170,6 +175,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
 
             $('#explorer-board .square-' + e_move.substring(0, 2)).append('<div class="model-move-square-from ' + targets[i] + '_move_square">' + from_symbol+'</div>')
             $('#explorer-board .square-' + e_move.substring(2, 4)).append('<div class="model-move-square-to ' + targets[i] + '_move_square"> &#9675; </div>')
+            */
         }
     } catch (err) {
         dat = {};
@@ -207,6 +213,60 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     $("#url").html(
         '<a href="' + url + '">link</a>'
     )
+}
+
+function draw_board_arrow(move_str, colour, arrow_text) {
+    if (document.getElementById("arrowhead-" + move_str)) {
+        return
+    }
+    var coords = move_to_coords(move_str);
+
+    var arrow_head = document.createElement("marker");
+    arrow_head.setAttribute('id', "arrowhead-" + move_str);
+    arrow_head.setAttribute('orient', "auto");
+    arrow_head.setAttribute('markerHeight', "4");
+    arrow_head.setAttribute('fill', colour || "rgb(120, 120, 120)");
+    arrow_head.setAttribute('refX', "1");
+    arrow_head.setAttribute('refY', "2");
+
+    var arrow_path = document.createElement("path");
+    arrow_path.setAttribute("d", "M0,.5 V3.5 L2,2 Z");
+    arrow_head.appendChild(arrow_path);
+    document.getElementById('board-drawing-defs').appendChild(arrow_head);
+
+    var arrow = document.createElement("line");
+    console.log(coords);
+    arrow.setAttribute('x1', (coords[0][0] - .5) * 100 / 8);
+    arrow.setAttribute('y1', (8 - coords[0][1] + .5) * 100 / 8);
+    arrow.setAttribute('x2', (coords[1][0] - .5) * 100 / 8);
+    arrow.setAttribute('y2', (8 - coords[1][1] + .5) * 100 / 8);
+    arrow.setAttribute('marker-end', "url(#arrowhead-" + move_str + ")");
+    arrow.setAttribute('id', "svg-arrow-" + move_str);
+    arrow.setAttribute('stroke', colour || "rgb(120, 120, 120)");
+    arrow.setAttribute('stroke-width', "3");
+    arrow.setAttribute('class', "board-arrow");
+    arrow.setAttribute("opacity", ".6");
+    document.getElementById('board-drawing-root').appendChild(arrow);
+
+    var text = document.createElement("text", arrow_text);
+    text.setAttribute("style", "font-size: 3pt;");
+    var textPath = document.createElement("textPath");
+    textPath.setAttribute("xlink:href", "#svg-arrow-" + move_str);
+    textPath.setAttribute("startOffset", "50%");
+    textPath.setAttribute("text-anchor", "middle");
+    textPath.appendChild(document.createTextNode(arrow_text));
+    text.appendChild(textPath);
+    document.getElementById('board-drawing-root').appendChild(text);
+    $("#board-svg-container").html($("#board-svg-container").html());
+
+
+    //$("#board-drawing").append(`<line class="board-arrow" stroke="rgb(120, 120, 120)"  marker-end= opacity = ".6" x1 = "${coords[0][0]}" y1 = "${coords[0][1]}" x2 = "${coords[1][0]}" y2 = "${coords[1][1]}" ></line >`)
+}
+
+function move_to_coords(move_str){
+    var start = [move_str.charCodeAt(0) - 96, parseInt(move_str[1])];
+    var end = [move_str.charCodeAt(2) - 96, parseInt(move_str[3])];
+    return [start, end];
 }
 
 function calculateSquareSize() {
