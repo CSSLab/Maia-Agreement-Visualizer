@@ -27,7 +27,7 @@ Open your browser console to see pyodide output
 </p>
 <script type="text/javascript">
 pythonCode = `
-{% include_relative assets/python/python_functions.py %}
+{% include python_functions.py %}
 `
 languagePluginLoader.then(() => {
       return pyodide.loadPackage(['micropip', 'numpy'])
