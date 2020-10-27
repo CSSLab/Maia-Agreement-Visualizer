@@ -29,3 +29,7 @@ exclude:
 
 include:
   - __*.py
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"

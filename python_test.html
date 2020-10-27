@@ -9,6 +9,9 @@ title: Python Test
 </script>
 <script src="assets/pyodide/pyodide.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+<script src="assets/js/tf_loading.js"></script>
 
 <script src="assets/js/jquery-3.5.1.js"></script>
 
@@ -25,6 +28,16 @@ title: Python Test
 Pyodide test page <br>
 Open your browser console to see pyodide output
 </p>
+
+<table id="json_display">
+  <tr>
+    <th>Move</th>
+    <th>P</th>
+  </tr>
+</table>
+
+<button id='tf_button' onclick="tf_eval_button()" type="button" disabled>Run TF</button>
+<script src="assets/js/pyiodine_backend.js"></script>
 <script type="text/javascript">
 pythonCode = `
 {% include python_functions.py %}
@@ -33,10 +46,8 @@ languagePluginLoader.then(() => {
       return pyodide.loadPackage(['micropip', 'numpy'])
     }).then(() => {
       pyodide.runPython(pythonCode);
-    })
+    });
 </script>
-
-
 
 <div class="board-display">
 <div id="explorer-board" class="explorer-board">
@@ -45,7 +56,4 @@ languagePluginLoader.then(() => {
 </div>
 </div>
 
-<script src="assets/js/pyiodine_backend.js"></script>
-<script>
 
-</script>
