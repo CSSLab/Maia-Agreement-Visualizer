@@ -14,6 +14,8 @@ authors: Reid
 <link rel="stylesheet" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
 
+[Pure JS Maia Testing]({{ "/python_test" | relative_url }})
+
 ## Disclaimer
 
 This interactive widget is intended to be a supplement and inline with our blog post. It is aimed at the general reader, who we assume knows a little bit about chess. It is also still in development, I'm not very good at web dev, so there will be UI issues. The colours/CSS are not final either and are one of the things I want feedback on.

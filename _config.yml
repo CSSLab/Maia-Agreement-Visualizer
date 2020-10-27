@@ -26,3 +26,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - "*.sh"
+
+include:
+  - __*.py
