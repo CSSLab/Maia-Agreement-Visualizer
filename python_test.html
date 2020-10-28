@@ -29,14 +29,27 @@ Pyodide test page <br>
 Open your browser console to see pyodide output
 </p>
 
-<table id="json_display">
-  <tr>
-    <th>Move</th>
-    <th>P</th>
-  </tr>
-</table>
 
-<button id='tf_button' onclick="tf_eval_button()" type="button" disabled>Run TF</button>
+
+<div class="view-container">
+  <div class="board-display">
+    <div id="explorer-board" class="explorer-board">
+      <h2>Loading</h2>
+      <noscript>You need Javascript enabled to use this</noscript>
+    </div>
+  </div>
+
+  <div class="model-controls">
+  <button id='tf_button' onclick="tf_eval()" type="button" disabled>Run TF</button>
+
+  <table id="json_display">
+    <tr>
+      <th>Move</th>
+      <th>P</th>
+    </tr>
+  </table>
+  </div>
+</div>
 <script src="assets/js/pyiodine_backend.js"></script>
 <script type="text/javascript">
 pythonCode = `
@@ -49,11 +62,6 @@ languagePluginLoader.then(() => {
     });
 </script>
 
-<div class="board-display">
-<div id="explorer-board" class="explorer-board">
-  <h2>Loading</h2>
-  <noscript>You need Javascript enabled to use this</noscript>
-</div>
-</div>
+
 
 

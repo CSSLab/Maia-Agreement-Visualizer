@@ -2,3 +2,12 @@
     width: 100%;
     max-width: 800px;
 }
+
+.tf_js_container {
+    display: grid;
+    flex-direction: row;
+}
+
+.tf_js_cell {
+    display: grid;
+}
