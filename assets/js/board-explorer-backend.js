@@ -147,7 +147,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
 
         for (i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
-            $("#" + targets[i] + "_move").html(e_move)
+            $("#" + targets[i] + "_move").text(e_move)
 
             if (dat[targets[i] + "_correct"]) {
                 draw_board_arrow(e_move, 'green', targets[i]);
