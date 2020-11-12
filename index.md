@@ -48,6 +48,10 @@ The info field is incomplete, and will probably be a collapsible element. The ma
 
 {% include_relative board-explorer.html data_path="assets/data/base_data.json" %}
 
+# Iframe
+
+ <iframe src="{{ '/embed'| relative_url }}" title="Iframe test" class="explorer_embed"></iframe>
+
 ## Game Explore
 
 {% include_relative game-explorer.html data_path="assets/data/game_data.json" %}

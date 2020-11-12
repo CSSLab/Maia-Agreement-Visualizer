@@ -13,11 +13,18 @@
 }
 
 .view-container {
+  margin: auto;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   max-width: 1600px;
   background-color: rgb(207, 206, 235);
+}
+
+.explorer_embed {
+  margin: auto;
+  width: 30%;
+  height: 30vh;
 }
 
 .board-display {
@@ -36,7 +43,6 @@
 .explorer-board {
   width: 400px;
 }
-
 .board-drawing {
   width: 400px;
   height:396px;
@@ -45,6 +51,27 @@
   z-index:1;
 }
 
+ @media only screen and (max-width: 450px) {
+  .explorer-board {
+    width: 200px;
+  }
+  .board-drawing {
+  width: 200px;
+  height:198px;
+  margin-bottom: -200px;
+}
+}
+
+ @media only screen and (max-width: 150px) {
+  .explorer-board {
+    width: 100px;
+  }
+  .board-drawing {
+  width: 100px;
+  height: 99px;
+  margin-bottom: -100px;
+}
+}
 
 .other-controls {
   display: flex;
