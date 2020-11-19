@@ -16,8 +16,11 @@
   margin: auto;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  max-width: 1400px;
 }
+
+
 
 .explorer_embed {
   margin: auto;
@@ -39,15 +42,23 @@
 }
 
 .explorer-board {
-  width: 100vw;
+  width: 60vw;
   max-width: 600px;
+}
+
+@media only screen and (max-width: 960px) {
+  .view-container {
+    flex-wrap: wrap;
+  }
+  .explorer-board {
+    width: 80vw;
+  }
 }
 
 .board-drawing {
   position:relative;
   z-index:1;
 }
-
 
 .other-controls {
   display: flex;
@@ -63,6 +74,7 @@
 .model_input {
   display: flex;
   justify-content: flex-start;
+  padding-top: 1em;
 }
 
 .arrow-human {
@@ -77,6 +89,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  padding-top: 2em;
 }
 
 .info_panel > p {
@@ -92,9 +105,9 @@
 }
 
 .fen_text {
-  max-width: 30ch;
   font-family:monospace;
-  display: block;
+  display: inline;
+  font-size: 1.2em;
 }
 
 .loading_text {
@@ -105,9 +118,8 @@
 
 .elo-selector {
   position: relative;
+  font-size: 1.5em;
 }
-
-
 
 .material-slider {
   width: 10ch;
@@ -116,7 +128,7 @@
 .switch {
   position: sticky;
   width: 11.5ch;
-  height: 2em;
+  height: 1em;
   padding: 0;
   white-space:nowrap;
 }
@@ -134,6 +146,7 @@
 .text_slider {
   position: absolute;
   cursor: pointer;
+  height: 2em;
   top: 0;
   left: 0;
   right: 0;
@@ -148,9 +161,9 @@
   position: absolute;
   content: "";
   height: 1.5em;
+  bottom: .25em;
   width: 2ch;
   left: .5ch;
-  bottom: .25em;
   background-color: rgb(64, 58, 155);
   -webkit-transition: .8s;
   transition: .8s;
@@ -180,6 +193,7 @@ input:disabled + .text_slider {
 
 input:disabled + .text_slider:before {
   background-color: rgb(125, 124, 139);
+  visibility: hidden;
 }
 
 input:disabled + .text_slider:after {

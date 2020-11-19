@@ -1,7 +1,6 @@
 
 <link rel="stylesheet" href="assets/js/chessboardjs/css/chessboard-1.0.0.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
-<link rel="stylesheet" href="assets/css/board-explorer.css" />
 
 <div class="view-container">
     <div class="model_selection_column">
@@ -59,7 +58,6 @@
         <div class="info_panel">
             <p id='count_string'></p>
             <p id='cp_string'><span class="loading_text">Loading</span></p>
-            <p id='fen_string'></p>
             <p id='url_string'></p>
         </div>
     </div>
@@ -72,6 +70,7 @@
             </div>
         </div>
     <div class="legend">
+        <div class='help-menu'><p id='fen_string'></p></div>
         <div class='help-menu'><span class="arrow-human">&#8599; Green arrow</span> is the human's move and correctly predicted model's moves</div>
         <div class='help-menu'><span class="arrow-wrong">&#8599; Red arrow(s)</span> are the incorrectly predicted moves</div>
     </div>
