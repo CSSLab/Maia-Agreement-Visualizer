@@ -12,6 +12,10 @@
   --maia-1900-color: rgb(17, 12, 49);
 }
 
+h1 {
+  text-align:center;
+}
+
 .view-container {
   margin: auto;
   display: flex;
@@ -117,6 +121,8 @@
 .elo-selector {
   position: relative;
   font-size: 1.5em;
+  top: -.25em;
+  line-height: 150%;
 }
 
 .material-slider {

@@ -1,10 +1,14 @@
-
+<div class='explorer'>
 <link rel="stylesheet" href="assets/js/chessboardjs/css/chessboard-1.0.0.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
+<h1>Maia Prediction Visualizer</h1>
 
 <div class="view-container">
+
     <div class="model_selection_column">
+        <h3>Select which models were correct and view an example chess board:</h3>
         <div class="model_input">
+
             For a players with rating: &nbsp;
             <select name="player" class="elo-selector" id="player_elo" onchange="update_explorer(false)">
                 <option value="1100">1100</option>
@@ -81,7 +85,9 @@
 
 <script src="assets/js/jquery-3.5.1.js"></script>
 <script src="assets/js/chessboardjs/js/chessboard-1.0.0.js"></script>
+<script src="assets/js/chess.js"></script>
 <script src="assets/js/board-explorer-backend.js"></script>
 <script>
     setup_explorer_board("{{ include.data_path }}")
 </script>
+</div>

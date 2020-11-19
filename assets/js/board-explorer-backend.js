@@ -7,6 +7,45 @@ for (i = 0; i < 5; i++) {
 }
 targets.push('sf_m')
 
+function move_to_san(fen, move) {
+    return Chess(fen).move(move, { sloppy: true })['san']
+}
+
+var piece_lookup  = {
+    'p' : 'Pawn',
+    'n' : 'Knight',
+    'b' : 'Bishop',
+    'r' : 'Rook',
+    'q' : 'Queen',
+    'k' : 'King',
+}
+
+function move_to_description(fen, move) {
+    m = Chess(fen).move(move, { sloppy: true })
+    //{ color: "w", from: "e2", to: "e4", flags: "b", piece: "p", san: "e4" }
+    var decr_str = ''
+    if (m['color'] == 'w') {
+        decr_str = decr_str + "White "
+    } else {
+        decr_str = decr_str + "Black "
+    }
+    if (m['flags'] == 'k' || m['flags'] == 'q') {
+        decr_str = decr_str + "Castled"
+        return decr_str;
+    }
+
+    decr_str = decr_str + piece_lookup[m['piece']]
+    decr_str = decr_str + " from " + m['from']
+    decr_str = decr_str + " to " + m['to']
+    if (m['flags'] == 'n') {
+    } else if (m['flags'] == 'c') {
+        decr_str = decr_str + " capturing a piece"
+    } else if (m['flags'] == 'c') {
+        decr_str = decr_str + " promoting their pawn"
+    }
+    return decr_str;
+}
+
 function setup_explorer_board(data_file) {
     console.log("loading: " + data_file);
     $.getJSON(data_file, function(data) {
@@ -97,11 +136,11 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
 
         for (var i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
-            $("#" + targets[i] + "_move").text(e_move)
-
+            $("#" + targets[i] + "_move").text(move_to_san(dat['board'],e_move));
             if (dat[targets[i] + "_correct"]) {
                 draw_board_arrow(e_move, 'green', targets[i]);
-                player_move = e_move;
+                var player_move = e_move;
+                var player_move_descrip = move_to_description(dat['board'], player_move);
             } else {
                 draw_board_arrow(e_move, 'red', targets[i]);
             }
@@ -113,9 +152,9 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     )
 
     if (is_blunder) {
-        $("#move_string").html('The player made move: <span class="move_text">' + player_move + '</span> which was a blunder' )
+        $("#move_string").html('The player blundered and moved their <span class="move_text">' + player_move_descrip + '</span>' )
     } else {
-        $("#move_string").html('The player made move: <span class="move_text">' + player_move + '</span> which was a good move')
+        $("#move_string").html('The player made a good move, moving their <span class="move_text">' + player_move_descrip + '</span> which was a ')
     }
     $("#player_move").html()
 
@@ -127,13 +166,15 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         var style_str = "style='height: " + $("#board-container").height()+ "px;'"
         $("#board-svg-container").html('')
 
-
         $("#move_string").text("")
         $("#explorer-board").html("<h3>No Board with these properties was found in our dataset</h3>")
         $("#fen_string").html('')
         $("#count_string").text("There were 0 boards, out of 4,655,522 with this combination of models correct.")
         $("#cp_string").text("")
         $("#url_string").html("")
+        for (var i = 0; i < targets.length; i++) {
+            $("#" + targets[i] + "_move").text('');
+        }
     }
 }
 
