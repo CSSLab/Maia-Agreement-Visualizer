@@ -143,7 +143,8 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         });
         var i;
         var square_size = calculateSquareSize()
-        $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id = "board-drawing-root" ><defs id="board-drawing-defs"></defs></svg >')
+        var style_str = "style='width: " + $("#board-container").width() + "px;height: " + $("#board-container").height() + "px;margin-bottom: " + -$("#board-container").height() +"px;'"
+        $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id="board-drawing-root"' + style_str + '><defs id="board-drawing-defs"></defs></svg >')
 
         for (i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
@@ -248,13 +249,14 @@ function draw_board_arrow(move_str, colour, arrow_text) {
     arrow.setAttribute("opacity", ".6");
     document.getElementById('board-drawing-root').appendChild(arrow);
 
+
     var text = document.createElement("text", arrow_text);
     text.setAttribute("style", "font-size: 3pt;");
     var textPath = document.createElement("textPath");
     textPath.setAttribute("xlink:href", "#svg-arrow-" + move_str);
     textPath.setAttribute("startOffset", "50%");
     textPath.setAttribute("text-anchor", "middle");
-    textPath.appendChild(document.createTextNode(arrow_text));
+    //textPath.appendChild(document.createTextNode(arrow_text));
     text.appendChild(textPath);
     document.getElementById('board-drawing-root').appendChild(text);
     $("#board-svg-container").html($("#board-svg-container").html());

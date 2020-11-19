@@ -46,7 +46,7 @@ The info field is incomplete, and will probably be a collapsible element. The ma
 
 ## Board Explore
 
-{% include_relative board-explorer.html data_path="assets/data/base_data.json" %}
+{% include_relative board-explorer_v2.html data_path="assets/data/base_data.json" %}
 
 # Iframe
 
