@@ -110,13 +110,15 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         'This board is from: <a href="https://' + game_str + '">' + game_str + "</a>"
     )
 
-    $("#player_move").html('<span class="move_text">' + player_move + '</span>')
-    $("#rating").html(player_elo)
-
-
+    if (is_blunder) {
+        $("#move_string").html('The player made move: <span class="move_text">' + player_move + '</span> which was a blunder' )
+    } else {
+        $("#move_string").html('The player made move: <span class="move_text">' + player_move + '</span> which was a good move')
+    }
+    $("#player_move").html()
 
     $("#fen_string").html('FEN: <span class="fen_text">' + dat["board"] + '</span>')
-    $("#count_string").text("There were " + dat["count"] + " boards, out of TODO, with this combination of models correct.")
+    $("#count_string").text("There were " + dat["count"] + " boards, out of 4,655,522 with this combination of models correct.")
     $("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
@@ -131,8 +133,13 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
             dat["count"] = 0;
             dat["cp_rel"] = "";
         }
+        $("#move_string").text("")
         $("#explorer-board").html("<h3>No Board with these properties was found in our dataset</h3>")
         $("#board-svg-container").html('')
+        $("#fen_string").html('')
+        $("#count_string").text("There were 0 boards, out of 4,655,522 with this combination of models correct.")
+        $("#cp_string").text("")
+        $("#url_string").html("")
     }
 }
 
