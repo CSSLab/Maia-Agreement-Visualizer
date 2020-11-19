@@ -137,7 +137,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         for (var i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
             $("#" + targets[i] + "_move").text(move_to_san(dat['board'],e_move));
-            if (dat[targets[i] + "_correct"]) {
+            if (dat[targets[i] + "_correct"] || ((i == targets.length - 1) && (board_str.slice(-1) == '1'))) {
                 draw_board_arrow(e_move, 'green', targets[i]);
                 player_move_descrip = move_to_description(dat['board'], e_move);
             } else {
@@ -153,7 +153,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     if (is_blunder) {
         $("#move_string").html('The player blundered and moved their <span class="move_text">' + player_move_descrip + '</span>' )
     } else {
-        $("#move_string").html('The player made a good move, moving their <span class="move_text">' + player_move_descrip + '</span> which was a ')
+        $("#move_string").html('The player made a good move, moving their <span class="move_text">' + player_move_descrip + '</span>')
     }
     $("#player_move").html()
 
@@ -162,6 +162,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     $("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
+        console.error(err);
         var style_str = "style='height: " + $("#board-container").height()+ "px;'"
         $("#board-svg-container").html('')
 
