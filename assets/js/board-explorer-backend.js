@@ -133,14 +133,13 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
         var style_str = "style='width: " + $("#board-container").width() + "px;height: " + $("#board-container").height() + "px;margin-bottom: " + -$("#board-container").height() + "px;'"
         $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id="board-drawing-root"' + style_str + '><defs id="board-drawing-defs"></defs></svg >')
 
-
+        var player_move_descrip = "Unknown"
         for (var i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
             $("#" + targets[i] + "_move").text(move_to_san(dat['board'],e_move));
             if (dat[targets[i] + "_correct"]) {
                 draw_board_arrow(e_move, 'green', targets[i]);
-                var player_move = e_move;
-                var player_move_descrip = move_to_description(dat['board'], player_move);
+                player_move_descrip = move_to_description(dat['board'], e_move);
             } else {
                 draw_board_arrow(e_move, 'red', targets[i]);
             }
