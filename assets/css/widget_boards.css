@@ -20,8 +20,6 @@
   max-width: 1400px;
 }
 
-
-
 .explorer_embed {
   margin: auto;
   width: 30%;
@@ -42,7 +40,7 @@
 }
 
 .explorer-board {
-  width: 60vw;
+  width: 40vw;
   max-width: 600px;
 }
 

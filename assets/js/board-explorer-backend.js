@@ -77,6 +77,7 @@ function update_explorer(complexity_changed) {
 
 function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     var player_move = "unknown"
+
     try {
         if (($('#' + targets[targets.length - 1] + '_toggle')[0].checked) & is_blunder) {
             throw 'Stockfish incorrectly correct';
@@ -89,11 +90,12 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
             sparePieces: false,
             dropOffBoard: 'trash',
         });
-        var i;
-        var style_str = "style='width: " + $("#board-container").width() + "px;height: " + $("#board-container").height() + "px;margin-bottom: " + -$("#board-container").height() +"px;'"
+
+        var style_str = "style='width: " + $("#board-container").width() + "px;height: " + $("#board-container").height() + "px;margin-bottom: " + -$("#board-container").height() + "px;'"
         $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id="board-drawing-root"' + style_str + '><defs id="board-drawing-defs"></defs></svg >')
 
-        for (i = 0; i < targets.length; i++) {
+
+        for (var i = 0; i < targets.length; i++) {
             var e_move = dat[targets[i] + "_move"]
             $("#" + targets[i] + "_move").text(e_move)
 
@@ -122,20 +124,12 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     $("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
-        dat = {};
-        for (i = 0; i < targets.length; i++) {
-            dat[targets[i] + "_move"] = "????";
-            dat[targets[i] + "_correct"] = false;
-            dat["game_id"] = "None";
-            dat["move_ply"] = 0;
-            dat["board"] = "";
-            dat['material_count'] = 0;
-            dat["count"] = 0;
-            dat["cp_rel"] = "";
-        }
+        var style_str = "style='height: " + $("#board-container").height()+ "px;'"
+        $("#board-svg-container").html('')
+
+
         $("#move_string").text("")
         $("#explorer-board").html("<h3>No Board with these properties was found in our dataset</h3>")
-        $("#board-svg-container").html('')
         $("#fen_string").html('')
         $("#count_string").text("There were 0 boards, out of 4,655,522 with this combination of models correct.")
         $("#cp_string").text("")
