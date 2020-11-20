@@ -26,9 +26,13 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - "*.sh"
+  - README.md
+  - maia-viz.zip
+  - python_test.html
 
 include:
-  - __*.py
+  - index.md
+  - iframes.md
 
 webrick:
   headers:

@@ -1,11 +1,4 @@
-targets = ['maia_1100', 'maia_1200', 'maia_1300', 'maia_1400', 'maia_1500', 'maia_1600', 'maia_1700', 'maia_1800', 'maia_1900', 'sf_m',]
-
-targets = []
-var i;
-for (i = 0; i < 5; i++) {
-    targets.push('maia_1' + ((i * 2) + 1) + '00')
-}
-targets.push('sf_m')
+var targets = ["maia_1100", "maia_1300", "maia_1500", "maia_1700", "maia_1900", "sf_m"]
 
 function move_to_san(fen, move) {
     return Chess(fen).move(move, { sloppy: true })['san']
@@ -21,8 +14,7 @@ var piece_lookup  = {
 }
 
 function move_to_description(fen, move) {
-    m = Chess(fen).move(move, { sloppy: true })
-    //{ color: "w", from: "e2", to: "e4", flags: "b", piece: "p", san: "e4" }
+    var m = Chess(fen).move(move, { sloppy: true })
     var decr_str = ''
     if (m['color'] == 'w') {
         decr_str = decr_str + "White "
@@ -47,22 +39,19 @@ function move_to_description(fen, move) {
 }
 
 function setup_explorer_board(data_file) {
-    console.log("loading: " + data_file);
     $.getJSON(data_file, function(data) {
-        console.log("loaded: " + data_file);
         all_boards = data;
         update_explorer(false);
     });
 }
 
 function update_explorer(complexity_changed) {
-    var i;
     var s ='';
-    enabled_index_1 = 0;
-    enabled_index_2 = 4;
+    var enabled_index_1 = 0;
+    var enabled_index_2 = 4;
     var flip_encountered = false;
     var start_value = $('#' + targets[0] + '_toggle')[0].checked;
-    for (i = 0; i < targets.length; i++) {
+    for (var i = 0; i < targets.length; i++) {
         var c_val = $('#' + targets[i] + '_toggle')[0].checked;
         if (c_val) {
             s += '1'
@@ -92,7 +81,6 @@ function update_explorer(complexity_changed) {
     }
     var is_blunder = $('#is_blunder')[0].checked;
     var elo = $('#player_elo')[0].value;
-    console.log(s, elo, is_blunder);
     if (!complexity_changed) {
         try {
             var dat = all_boards[s][elo][is_blunder];
@@ -115,8 +103,6 @@ function update_explorer(complexity_changed) {
 }
 
 function switch_to_board(board_str, player_elo, is_blunder, material_count) {
-    var player_move = "unknown"
-
     try {
         if (($('#' + targets[targets.length - 1] + '_toggle')[0].checked) & is_blunder) {
             throw 'Stockfish incorrectly correct';
@@ -155,6 +141,7 @@ function switch_to_board(board_str, player_elo, is_blunder, material_count) {
     } else {
         $("#move_string").html('The player made a good move, moving their <span class="move_text">' + player_move_descrip + '</span>')
     }
+
     $("#player_move").html()
 
     $("#fen_string").html('FEN: <span class="fen_text">' + dat["board"] + '</span>')
@@ -198,7 +185,6 @@ function draw_board_arrow(move_str, colour, arrow_text) {
     document.getElementById('board-drawing-defs').appendChild(arrow_head);
 
     var arrow = document.createElement("line");
-    console.log(coords);
     arrow.setAttribute('x1', (coords[0][0] - .5) * 100 / 8);
     arrow.setAttribute('y1', (8 - coords[0][1] + .5) * 100 / 8);
     arrow.setAttribute('x2', (coords[1][0] - .5) * 100 / 8);
@@ -218,11 +204,9 @@ function draw_board_arrow(move_str, colour, arrow_text) {
     textPath.setAttribute("xlink:href", "#svg-arrow-" + move_str);
     textPath.setAttribute("startOffset", "50%");
     textPath.setAttribute("text-anchor", "middle");
-    //textPath.appendChild(document.createTextNode(arrow_text));
     text.appendChild(textPath);
     document.getElementById('board-drawing-root').appendChild(text);
     $("#board-svg-container").html($("#board-svg-container").html());
-
 }
 
 function move_to_coords(move_str){

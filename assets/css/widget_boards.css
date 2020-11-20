@@ -26,8 +26,20 @@ h1 {
 
 .explorer_embed {
   margin: auto;
-  width: 30%;
-  height: 30vh;
+  width: 320px;
+  height: 700px;
+}
+
+.explorer_embed_medium {
+  margin: auto;
+  width: 480px;
+  height: 800px;
+}
+
+.explorer_embed_large {
+  margin: auto;
+  width: 800px;
+  height: 800px;
 }
 
 .board-display {
@@ -35,7 +47,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   flex-grow: 2;
-  justify-content: end;
+  justify-content: center;
 }
 
 .selectors-column {
@@ -57,6 +69,8 @@ h1 {
   }
 }
 
+
+
 .board-drawing {
   position:relative;
   z-index:1;
@@ -77,6 +91,10 @@ h1 {
   display: flex;
   justify-content: flex-start;
   padding-top: 1em;
+}
+
+.model_input > p {
+  text-align: right;
 }
 
 .arrow-human {
@@ -131,7 +149,7 @@ h1 {
 
 .switch {
   position: sticky;
-  width: 11.5ch;
+  width: 12ch;
   height: 1em;
   padding: 0;
   white-space:nowrap;
@@ -151,11 +169,10 @@ h1 {
   position: absolute;
   cursor: pointer;
   height: 2em;
-  top: 0;
+  top: .5em;
   left: 0;
   right: 0;
   bottom: 0;
-  top: -.5em;
   line-height: 200%;
   -webkit-transition: .4s;
   transition: .4s;
@@ -188,10 +205,12 @@ input:checked + .text_slider:after {
 }
 
 input:checked + .text_slider:before {
-  -webkit-transform: translateX(8.7ch);
-  -ms-transform: translateX(8.7ch);
-  transform: translateX(8.7ch);
+  -webkit-transform: translateX(9ch);
+  -ms-transform: translateX(9ch);
+  transform: translateX(9ch);
 }
+
+
 
 input:disabled + .text_slider {
   background-color: rgb(173, 172, 192);
@@ -224,7 +243,16 @@ input:checked + .blunder_slider:before {
   -ms-transform: translateX(19.5ch);
   transform: translateX(19.5ch);
 }
-
+@media only screen and (max-width: 400px) {
+input:checked + .text_slider:before {
+  -webkit-transform: translateX(0ch);
+  -ms-transform: translateX(0ch);
+  transform: translateX(0ch);
+  -webkit-transition: .1s;
+  transition: .1s;
+  visibility: hidden;
+}
+}
 input:checked + .blunder_slider:after
 {
   content:'Made a Mistake';
@@ -310,6 +338,7 @@ input:checked + .diagonal_slider:after
   right: 24px;
   bottom: -24px;
 }
+
 .maia_1100_text {
   color: var(--maia-1100-color);
 }
