@@ -24,11 +24,11 @@
 
 .white-1e1d7 {
   background-color: #ffffff;
-  color: #023f8a;
+  color: #73b2ff;
 }
 
 .black-3c85d {
-  background-color: #023f8a;
+  background-color: #73b2ff;
   color: #ffffff;
 }
 
@@ -39,7 +39,7 @@
 .notation-322f9 {
   cursor: default;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 20pt;
   position: absolute;
 }
 

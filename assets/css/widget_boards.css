@@ -69,8 +69,6 @@ h1 {
   }
 }
 
-
-
 .board-drawing {
   position:relative;
   z-index:1;
@@ -97,6 +95,22 @@ h1 {
   text-align: right;
 }
 
+.model_selector_input {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
+}
+.model_selector_input > p {
+  text-align: left;
+}
+
+.model_selector_container {
+  display: block;
+  flex-grow: 4;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
 .arrow-human {
   color:green;
 }
@@ -105,6 +119,9 @@ h1 {
   color:red;
 }
 
+.arrow-sf {
+  color: blue;
+}
 .info_panel {
   display: flex;
   justify-content: flex-start;
@@ -143,8 +160,87 @@ h1 {
   line-height: 150%;
 }
 
+.blunder-selector {
+  position: relative;
+  font-size: 1.5em;
+  top: -.25em;
+  line-height: 150%;
+  width: 20ch;
+}
+
 .material-slider {
   width: 10ch;
+}
+
+.model-slider {
+  width: 100%;
+}
+.model_form {
+  width: 100%;
+  max-width: 50ch;
+}
+
+.model-invert-button {
+  position: absolute;
+  top: 5rem;
+  padding: 15px 32px;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.5rem;
+  background-color: #259dbb;
+  border: none;
+  color: white;
+}
+
+output {
+  position: absolute;
+  background-color: var(--maia-1400-color);
+  width: 6ch;
+  height: 2rem;
+  line-height: 150%;
+  text-align: center;
+  color: white;
+  border-radius: 2ch;
+  display: inline-block;
+  bottom: 100%;
+  left: 0;
+  font-size: 1.5rem;
+  transform: translate(-50%, 0);
+}
+
+.model_label {
+  position: absolute;
+  width: 6ch;
+  height: 2rem;
+  line-height: 150%;
+  text-align: center;
+  border-radius: 2ch;
+  display: inline-block;
+  bottom: -100%;
+  font-size: 1.5rem;
+}
+
+.label_left {
+  left: 0;
+}
+
+.label_1100 {
+  background-color: green;
+  color: var(--maia-1100-color);
+}
+
+.label_right {
+  right: 0;
+}
+
+.label_1900 {
+  background-color: red;
+  color: var(--maia-1900-color);
+}
+
+form {
+  position: relative;
 }
 
 .switch {
@@ -161,6 +257,11 @@ h1 {
 
 .diagonal_switch {
   width: 8.5ch;
+}
+
+.moves_table {
+  width: 100%;
+  max-width: 50ch;
 }
 
 .switch input {display:none;}

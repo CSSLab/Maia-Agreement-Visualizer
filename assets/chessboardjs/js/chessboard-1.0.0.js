@@ -576,7 +576,7 @@
     // default piece theme is wikipedia
     if (!config.hasOwnProperty('pieceTheme') ||
         (!isString(config.pieceTheme) && !isFunction(config.pieceTheme))) {
-      config.pieceTheme = 'assets/chessboardjs/img/chesspieces/wikipedia/{piece}.png'
+      config.pieceTheme = 'assets/chessboardjs/img/chesspieces/wikipedia_svg/{piece}.svg'
     }
 
     // animation speeds
