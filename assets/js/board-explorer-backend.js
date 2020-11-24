@@ -249,9 +249,9 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
     game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
 
     if (is_blunder) {
-        $("#move_string").html('The player blundered and moved their <span class="move_text">' + player_move_descrip + '</span>' )
+        $("#move_string").html('The player blundered and moved their <span class="move_desc_text">' + player_move_descrip + '</span>' )
     } else {
-        $("#move_string").html('The player made a good move, moving their <span class="move_text">' + player_move_descrip + '</span>')
+        $("#move_string").html('The player made a good move, moving their <span class="move_desc_text">' + player_move_descrip + '</span>')
     }
 
     $("#player_move").html()

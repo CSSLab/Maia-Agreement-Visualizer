@@ -164,12 +164,21 @@ h1 {
 }
 
 .move_text {
-  width: 4ch;
+  width: 6ch;
+  text-align: center;
+  font-family:monospace;
+  height: 1em;
+  font-size: 150%;
+  display: block;
+}
+
+.move_desc_text {
   text-align: center;
   font-family:monospace;
   height: 1em;
   font-size: 150%;
 }
+
 
 .fen_text {
   font-family:monospace;
