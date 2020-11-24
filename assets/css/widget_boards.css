@@ -68,7 +68,7 @@ h1 {
   flex-direction: column;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .view-container {
     flex-wrap: wrap;
   }
@@ -201,16 +201,12 @@ h1 {
 
 .elo-selector {
   position: relative;
-  font-size: 1.5em;
-  top: -.25em;
-  line-height: 150%;
+  font-size: 1em;
 }
 
 .blunder-selector {
   position: relative;
-  font-size: 1.5em;
-  top: -.25em;
-  line-height: 150%;
+  font-size: 1em;
   width: 20ch;
 }
 
@@ -300,7 +296,6 @@ output {
 
 .label_1100 {
   background-color: green;
-  color: var(--maia-1100-color);
 }
 
 .label_right {
@@ -309,7 +304,6 @@ output {
 
 .label_1900 {
   background-color: red;
-  color: var(--maia-1900-color);
 }
 
 form {
@@ -345,16 +339,13 @@ form {
   width: 90%;
   max-width: 50ch;
   font-size: 1.3rem;
-  text-align: left;
-}
-
-.moves_table > tr > th {
-  font-size: 1.5rem;
-}
-
-.moves_table > tr > td {
   text-align: center;
 }
+
+.moves_table > tbody > tr > th {
+  font-size: 2rem;
+}
+
 
 @media only screen and (max-width: 600px) {
   .moves_table {
@@ -364,16 +355,20 @@ form {
 .switch input {display:none;}
 
 .move_correct {
+  font-size: 2rem;
   color: green;
 }
 
 .move_incorrect {
+  font-size: 2rem;
   color: red;
 }
 
 .move_incorrect_sf {
+  font-size: 2rem;
   color: blue;
 }
+
 .text_slider {
   position: absolute;
   cursor: pointer;

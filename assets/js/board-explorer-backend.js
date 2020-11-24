@@ -241,10 +241,11 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
             $("#stockfish_correct").html("<span class='move_correct'>&#10004;</span>");
         } else {
             $("#stockfish_correct").html("<span class='move_incorrect_sf'>&#x2717;</span>");
-            draw_board_arrow(sf_move, 'blue', black_active, true);
         }
-
         draw_board_arrow(dat['move'], 'green', black_active, false);
+        draw_board_arrow(sf_move, 'blue', black_active, true);
+
+
 
     game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
         /*
