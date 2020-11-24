@@ -116,6 +116,7 @@ h1 {
 .model_vals_table {
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
   padding-top: 1em;
   flex-grow: 2;
 }
@@ -157,6 +158,7 @@ h1 {
   flex-direction: column;
   padding-top: 2em;
   margin-right: auto;
+  width: 90%;
 }
 
 .info_panel > p {
@@ -172,7 +174,7 @@ h1 {
   display: block;
 }
 
-.move_desc_text {
+.move_desc_inline {
   text-align: center;
   font-family:monospace;
   height: 1em;

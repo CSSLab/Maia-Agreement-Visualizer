@@ -6,8 +6,8 @@
 <h1>Maia Prediction Visualizer</h1>
 <div class="intro-header" id="intro-header">
 <p id="intro-board-descr">
-In the position below, Maia levels <span class="maia_1100_text">1100</span>-<span class="maia_1400_text">1400</span> correctly predict that White will play the tempting but wrong move <span class="move_text">b6</span> (the move
- played in the game). It threatens the Queen, but after <span class="move_text">Qxc5</span> White’s big advantage is mostly gone. Maia levels predict that, on average, players rated 1500 and above will play the correct <span class="move_text">bxa</span> <span class="maia_1500_text">1500</span>-<span class="maia_1900_text">1900</span>.
+In the position below, Maia levels <span class="maia_1100_text">1100</span>-<span class="maia_1400_text">1400</span> correctly predict that White will play the tempting but wrong move <span class="move_desc_inline">b6</span> (the move
+ played in the game). It threatens the Queen, but after <span class="move_desc_inline">Qxc5</span> White’s big advantage is mostly gone. Maia levels predict that, on average, players rated 1500 and above will play the correct <span class="move_desc_inline">bxa</span> <span class="maia_1500_text">1500</span>-<span class="maia_1900_text">1900</span>.
 </p>
 <p>
     If you want to explore what boards at these decision boundaries look like you can press the "Explore More Boards" button then select different combinations of correct models, move characteristics and player rating below. A board and each model's predictions will be displayed.
@@ -84,6 +84,11 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
             </tr>
             
         </table>
+        <div class="info_panel">
+            <p id="move_string"></p>
+            <p id="count_string"></p>
+            <!--<p id='cp_string'><span class="loading_text">Loading</span></p>-->
+        </div>
     </div>
 
     <div class="board-display">
@@ -99,11 +104,6 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
             model's moves</div>
         <div class="help-menu"><span class="arrow-wrong">&#8599; Red arrow(s)</span> are the incorrectly predicted moves</div>
         <div class="help-menu"><span class="arrow-sf">&#8599; Blue arrow</span> is Stockfish's predicted move</div>
-        <div class="info_panel">
-            <p id="move_string"></p>
-            <p id="count_string"></p>
-            <!--<p id='cp_string'><span class="loading_text">Loading</span></p>-->
-        </div>
     </div>
     <div class="model_selection_column">
         <h3 class="starts_hidden">Select which models correctly predicted the players, player rating or moves and view an
