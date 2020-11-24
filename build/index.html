@@ -14,53 +14,7 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
 </p>
 </div>
 <div class="view-container">
-    <div class="model_selection_column">
-    <h3 class="starts_hidden">Select which models correctly predicted the players, player rating or  moves and view an example chess board:</h3>
-        <div class="model_input" id="start_button_holder">
-        <button class="button start_button" onclick="start_interactive()">Explore More Boards</button>
-    </div>
-        <div class="model_input starts_hidden">
 
-            For a players with rating: &nbsp;
-            <select name="player" class="elo-selector" id="player_elo" onchange="update_explorer(false)">
-                <option value="1100">1100</option>
-                <option value="1300" selected="selected">1300</option>
-                <option value="1500">1500</option>
-                <option value="1700">1700</option>
-                <option value="1900">1900</option>
-            </select>
-        </div>
-
-        <div class="model_input starts_hidden">
-            <p>Where the player &nbsp;</p>
-            <select name="player" class="blunder-selector" id="player_blunder" onchange="update_explorer(false)">
-                <option value="mistake" selected="selected">Made a mistake</option>
-                <option value="sf_wrong">Played suboptimal</option>
-                <option value="sf_correct">Played optimally</option>
-            </select>
-        </div>
-
-        <div class="model_input starts_hidden">
-            And the board had: Few
-            <input class="material-slider" type="range" min="0" max="13" value="12" id="material_count" oninput="update_explorer(true)" />
-            Many, pieces
-        </div>
-
-        <div class="model_input model_selector_input starts_hidden">
-            <p> The Maia models are correct from:</p>
-            <div class="model_selector_container">
-            <form class="model_form">
-                <input class="model-slider" type="range" min="1100" max="1900" value="1400" step="100" id="model_slider" name="model_slider" oninput="update_explorer(false)" />
-                <output for="model_slider" id="model_slider_label"></output>
-                <span id="low-model" class="model_label label_1100 label_left"> 1100</span>
-                <span id="high-model" class="model_label label_1900 label_right"> 1900</span>
-                <input class="model-invert-button" type="button" value="Flip order" onclick="flip_order()" />
-            </form>
-
-            </div>
-        </div>
-
-    </div>
     <div class="model_vals_table">
         <table class="moves_table">
             <tr>
@@ -150,6 +104,54 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
             <p id="count_string"></p>
             <!--<p id='cp_string'><span class="loading_text">Loading</span></p>-->
         </div>
+    </div>
+    <div class="model_selection_column">
+        <h3 class="starts_hidden">Select which models correctly predicted the players, player rating or moves and view an
+            example chess board:</h3>
+        <div class="model_input" id="start_button_holder">
+            <button class="button start_button" onclick="start_interactive()">Explore More Boards</button>
+        </div>
+        <div class="model_input starts_hidden">
+
+            For a players with rating: &nbsp;
+            <select name="player" class="elo-selector" id="player_elo" onchange="update_explorer(false)">
+                <option value="1100">1100</option>
+                <option value="1300" selected="selected">1300</option>
+                <option value="1500">1500</option>
+                <option value="1700">1700</option>
+                <option value="1900">1900</option>
+            </select>
+        </div>
+
+        <div class="model_input starts_hidden">
+            <p>Where the player &nbsp;</p>
+            <select name="player" class="blunder-selector" id="player_blunder" onchange="update_explorer(false)">
+                <option value="mistake" selected="selected">Made a mistake</option>
+                <option value="sf_wrong">Played suboptimal</option>
+                <option value="sf_correct">Played optimally</option>
+            </select>
+        </div>
+
+        <div class="model_input starts_hidden">
+            And the board had: Few
+            <input class="material-slider" type="range" min="0" max="13" value="12" id="material_count" oninput="update_explorer(true)" />
+            Many, pieces
+        </div>
+
+        <div class="model_input model_selector_input starts_hidden">
+            <p> The Maia models are correct from:</p>
+            <div class="model_selector_container">
+                <form class="model_form">
+                    <input class="model-slider" type="range" min="1100" max="1900" value="1400" step="100" id="model_slider" name="model_slider" oninput="update_explorer(false)" />
+                    <output for="model_slider" id="model_slider_label"></output>
+                    <span id="low-model" class="model_label label_1100 label_left"> 1100</span>
+                    <span id="high-model" class="model_label label_1900 label_right"> 1900</span>
+                    <input class="model-invert-button" type="button" value="Flip order" onclick="flip_order()" />
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
