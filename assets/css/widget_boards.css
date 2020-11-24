@@ -21,7 +21,8 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  max-width: 1400px;
+  max-width: 1000px;
+  max-width: 90vw;
 }
 
 .explorer_embed {
@@ -47,17 +48,24 @@ h1 {
   flex-direction: column;
   align-items: center;
   flex-grow: 2;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.selectors-column {
-  display: flex;
-  flex-direction: column;
+.intro-header {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
 }
 
 .explorer-board {
   width: 40vw;
   max-width: 600px;
+}
+.selectors-column {
+  display: flex;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 600px) {
@@ -66,6 +74,9 @@ h1 {
   }
   .explorer-board {
     width: 80vw;
+  }
+  .notation-322f9 {
+    font-size: 12pt;
   }
 }
 
@@ -82,7 +93,14 @@ h1 {
 .model_selection_column {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .model_selection_column {
+    max-width: 90vw;
+  }
 }
 
 .model_input {
@@ -92,7 +110,14 @@ h1 {
 }
 
 .model_input > p {
-  text-align: right;
+  text-align: left;
+}
+
+.model_vals_table {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1em;
+  flex-grow: 2;
 }
 
 .model_selector_input {
@@ -100,6 +125,10 @@ h1 {
   flex-direction: column;
   padding-bottom: 4rem;
 }
+.starts_hidden {
+  display: none;
+}
+
 .model_selector_input > p {
   text-align: left;
 }
@@ -127,6 +156,7 @@ h1 {
   justify-content: flex-start;
   flex-direction: column;
   padding-top: 2em;
+  margin-right: auto;
 }
 
 .info_panel > p {
@@ -145,6 +175,11 @@ h1 {
   font-family:monospace;
   display: inline;
   font-size: 1.2em;
+}
+.count_text {
+  font-family:monospace;
+  height: 1em;
+  font-size: 150%;
 }
 
 .loading_text {
@@ -175,9 +210,36 @@ h1 {
 .model-slider {
   width: 100%;
 }
+
 .model_form {
   width: 100%;
   max-width: 50ch;
+}
+
+@media only screen and (max-width: 600px) {
+.model_form {
+  max-width: 90vw;
+}
+}
+
+.start_button {
+  background-color: #259dbb;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90vw;
+  min-width: 40vw;
+}
+
+.start_button_hidden {
+  display: none;
 }
 
 .model-invert-button {
@@ -259,13 +321,48 @@ form {
   width: 8.5ch;
 }
 
-.moves_table {
-  width: 100%;
-  max-width: 50ch;
+.help-menu {
+  text-align: left;
+  margin-right: auto;
 }
 
+.board-container {
+  margin-right: auto;
+}
+
+.moves_table {
+  width: 90%;
+  max-width: 50ch;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.moves_table > tr > th {
+  font-size: 1.5rem;
+}
+
+.moves_table > tr > td {
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .moves_table {
+    font-size: 1rem;
+  }
+}
 .switch input {display:none;}
 
+.move_correct {
+  color: green;
+}
+
+.move_incorrect {
+  color: red;
+}
+
+.move_incorrect_sf {
+  color: blue;
+}
 .text_slider {
   position: absolute;
   cursor: pointer;
@@ -310,8 +407,6 @@ input:checked + .text_slider:before {
   -ms-transform: translateX(9ch);
   transform: translateX(9ch);
 }
-
-
 
 input:disabled + .text_slider {
   background-color: rgb(173, 172, 192);

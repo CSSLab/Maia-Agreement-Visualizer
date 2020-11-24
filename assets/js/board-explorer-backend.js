@@ -1,4 +1,5 @@
 var flipped = false;
+var hide_intro = false;
 
 function move_to_san(fen, move) {
     return Chess(fen).move(move, { sloppy: true })['san']
@@ -11,6 +12,46 @@ var piece_lookup  = {
     'r' : 'Rook',
     'q' : 'Queen',
     'k' : 'King',
+}
+
+var starting_fen = "2k1r1r1/1pqb1p2/p3pB1p/nPPpPnp1/8/2P2N2/2Q1BPPP/R4RK1 w - - 0 19"
+//https://lichess.org/OW5GMLdP#36
+
+var dat_start = {
+    "board": "2k1r1r1/1pqb1p2/p3pB1p/nPPpPnp1/8/2P2N2/2Q1BPPP/R4RK1 w - - 0 19",
+    "count": 34,
+    "cp_rel": "7.5",
+    "maia_1100_correct": "True",
+    "maia_1100_move": "b5b6",
+    "maia_1100_p_rounded": 0.4,
+    "maia_1200_correct": "True",
+    "maia_1200_move": "b5b6",
+    "maia_1200_p_rounded": 0.6,
+    "maia_1300_correct": "True",
+    "maia_1300_move": "b5b6",
+    "maia_1300_p_rounded": 0.5,
+    "maia_1400_correct": "True",
+    "maia_1400_move": "b5b6",
+    "maia_1400_p_rounded": 0.5,
+    "maia_1500_correct": "False",
+    "maia_1500_move": "b5a6",
+    "maia_1500_p_rounded": 0.5,
+    "maia_1600_correct": "False",
+    "maia_1600_move": "b5a6",
+    "maia_1600_p_rounded": 0.5,
+    "maia_1700_correct": "False",
+    "maia_1700_move": "b5a6",
+    "maia_1700_p_rounded": 0.6,
+    "maia_1800_correct": "False",
+    "maia_1800_move": "b5a6",
+    "maia_1800_p_rounded": 0.5,
+    "maia_1900_correct": "False",
+    "maia_1900_move": "b5a6",
+    "maia_1900_p_rounded": 0.5,
+    "material_count": "12",
+    "move": "b5b6",
+    "move_ply": "34",
+    "sf_m_move": "b5a6"
 }
 
 function move_to_description(fen, move) {
@@ -41,8 +82,26 @@ function move_to_description(fen, move) {
 function setup_explorer_board(data_file) {
     $.getJSON(data_file, function(data) {
         all_boards = data;
-        update_explorer(false);
+        //Hand picked starting board
+        var board_str = '111100000'
+        var player_elo = 1300
+        var is_blunder = true
+        var sf_correct = false
+        var material_count = 12
+
+        all_boards[board_str][player_elo][is_blunder][sf_correct][material_count] = dat_start;
+        update_explorer(true);
+
     });
+}
+
+function start_interactive(){
+    $(".starts_hidden").removeClass("starts_hidden");
+
+    $("#start_button_holder").addClass("start_button_hidden");
+    hide_intro = true;
+    update_explorer(true);
+
 }
 
 function flip_order() {
@@ -87,6 +146,10 @@ function update_model_slider(target_elo) {
 }
 
 function update_explorer(complexity_changed) {
+    if (hide_intro) {
+        $("#intro-board-descr").hide()
+        hide_intro = false;
+    }
     var s ='';
 
     model_elo = $("#model_slider")[0].value
@@ -136,12 +199,14 @@ function update_explorer(complexity_changed) {
 function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material_count) {
     try {
         dat = all_boards[board_str][player_elo][is_blunder][sf_correct][material_count];
+        var black_active =  dat['board'].search(" w ") > 1
         var board = Chessboard(
             "explorer-board", {
             position: dat['board'],
             draggable: false,
             sparePieces: false,
             dropOffBoard: 'trash',
+            //orientation: black_active ? 'black' : 'white' ,
         });
 
         var style_str = "style='width: " + ($("#explorer-board").width() -8) + "px;height: " + $("#explorer-board").height() + "px;margin-bottom: " + (-$("#explorer-board").height() - 4)+ "px;'"
@@ -151,11 +216,11 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
             var m_str = 'maia_1' + (i + 1) + '00'
             var e_move = dat[m_str +'_move']
             $("#" + m_str + "_move").text(move_to_san(dat['board'],e_move));
-            $("#" + m_str + "_conf").text(dat[m_str + '_p_rounded']);
+            //$("#" + m_str + "_conf").text(dat[m_str + '_p_rounded']);
             if (dat[m_str + "_correct"] == "True") {
                 $("#" + m_str + "_correct").html("<span class='move_correct'>&#10004;</span>");
             } else {
-                draw_board_arrow(e_move, 'red');
+                draw_board_arrow(e_move, 'red', black_active, false);
                 $("#" + m_str + "_correct").html("<span class='move_incorrect'>&#x2717;</span>");
             }
         }
@@ -165,11 +230,11 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
         if (sf_correct) {
             $("#stockfish_correct").html("<span class='move_correct'>&#10004;</span>");
         } else {
-            $("#stockfish_correct").html("<span class='move_incorrect'>&#x2717;</span>");
-            draw_board_arrow(sf_move, 'blue');
+            $("#stockfish_correct").html("<span class='move_incorrect_sf'>&#x2717;</span>");
+            draw_board_arrow(sf_move, 'blue', black_active, true);
         }
 
-        draw_board_arrow(dat['move'], 'green');
+        draw_board_arrow(dat['move'], 'green', black_active, false);
 
     game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
 
@@ -180,19 +245,17 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
     }
 
     $("#player_move").html()
-
-    $("#count_string").text("There were " + dat["count"] + " boards, out of 4,655,522 with this combination of models correct.")
-    $("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
+        $("#count_string").html("There were <span class='count_text'>" + dat["count"] + "</span> boards, out of <span class='count_text'>4,655,522</span> with this combination of models correct.")
+    //$("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
-        console.error(err);
         var style_str = "style='height: " + $("#board-container").height()+ "px;'"
         $("#board-svg-container").html('')
 
         $("#move_string").text("")
         $("#explorer-board").html("<h3>No Board with these properties was found in our dataset</h3>")
         $("#fen_string").html('')
-        $("#count_string").text("There were 0 boards, out of 49,532,224 with this combination of models correct.")
+        $("#count_string").html("There were <span class='count_text'>0</span> boards, out of <span class='count_text'>49,532,224</span> with this combination of models correct.")
         $("#cp_string").text("")
         $("#url_string").html("")
         for (var i = 0; i < targets.length; i++) {
@@ -201,14 +264,14 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
     }
 }
 
-function draw_board_arrow(move_str, colour) {
-    if (document.getElementById("arrowhead-" + move_str)) {
+function draw_board_arrow(move_str, colour, black_active, is_sf) {
+    if (document.getElementById("arrowhead-" + move_str + '_' + is_sf)) {
         return
     }
     coords = move_to_coords(move_str);
 
     var arrow_head = document.createElement("marker");
-    arrow_head.setAttribute('id', "arrowhead-" + move_str);
+    arrow_head.setAttribute('id', "arrowhead-" + move_str + '_' + is_sf);
     arrow_head.setAttribute('orient', "auto");
     arrow_head.setAttribute('markerHeight', "4");
     arrow_head.setAttribute('fill', colour || "rgb(120, 120, 120)");
@@ -236,15 +299,19 @@ function draw_board_arrow(move_str, colour) {
     if (coords[1][1] < coords[0][1]) {
         def_y = def_y * -1
     }
-
-    arrow.setAttribute('x1', (coords[0][0] - .5) * 100 / 8);
     arrow.setAttribute('y1', (8 - coords[0][1] + .6) * 100 / 8);
-    arrow.setAttribute('x2', (coords[1][0] - .5) * 100 / 8 + def_x);
     arrow.setAttribute('y2', (8 - coords[1][1] + .6) * 100 / 8 + def_y);
-    arrow.setAttribute('marker-end', "url(#arrowhead-" + move_str + ")");
+    arrow.setAttribute('x1', (coords[0][0] - .5) * 100 / 8);
+    arrow.setAttribute('x2', (coords[1][0] - .5) * 100 / 8 + def_x);
+    arrow.setAttribute('marker-end', "url(#arrowhead-" + move_str + '_' + is_sf + ")");
     arrow.setAttribute('id', "gradient-" + move_str);
     arrow.setAttribute('stroke', colour || "rgb(120, 120, 120)");
-    arrow.setAttribute('stroke-width', "3");
+    if (is_sf) {
+        arrow.setAttribute('stroke-width', "2");
+    } else {
+        arrow.setAttribute('stroke-width', "3");
+    }
+
     arrow.setAttribute('class', "board-arrow");
     arrow.setAttribute("opacity", ".6");
     document.getElementById('board-drawing-root').appendChild(arrow);
@@ -265,4 +332,5 @@ function move_to_coords(move_str){
     var end = [move_str.charCodeAt(2) - 96, parseInt(move_str[3])];
     return [start, end];
 }
+
 
