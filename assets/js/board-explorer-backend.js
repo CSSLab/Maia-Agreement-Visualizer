@@ -80,18 +80,28 @@ function move_to_description(fen, move) {
 }
 
 function setup_explorer_board(data_file) {
+    var board_str = '111100000'
+    var player_elo = 1300
+    var is_blunder = true
+    var sf_correct = false
+    var material_count = 12
+    all_boards = {
+        '111100000': {
+            1300 : {
+                true: {
+                    false: {
+                        12: dat_start
+                    }
+                }
+            }
+        }
+    }
+    update_explorer(true);
     $.getJSON(data_file, function(data) {
         all_boards = data;
         //Hand picked starting board
-        var board_str = '111100000'
-        var player_elo = 1300
-        var is_blunder = true
-        var sf_correct = false
-        var material_count = 12
-
         all_boards[board_str][player_elo][is_blunder][sf_correct][material_count] = dat_start;
         update_explorer(true);
-
     });
 }
 
@@ -249,6 +259,7 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
     //$("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
+        console.log(err)
         var style_str = "style='height: " + $("#board-container").height()+ "px;'"
         $("#board-svg-container").html('')
 
@@ -258,9 +269,6 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
         $("#count_string").html("There were <span class='count_text'>0</span> boards, out of <span class='count_text'>49,532,224</span> with this combination of models correct.")
         $("#cp_string").text("")
         $("#url_string").html("")
-        for (var i = 0; i < targets.length; i++) {
-            $("#" + targets[i] + "_move").text('');
-        }
     }
 }
 
