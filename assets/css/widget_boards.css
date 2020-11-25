@@ -330,6 +330,12 @@ form {
   text-align: left;
   margin-right: auto;
 }
+.arrows-explanation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .board-container {
   margin-right: auto;
@@ -338,7 +344,7 @@ form {
 .moves_table {
   width: 90%;
   max-width: 50ch;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
 }
 

@@ -241,21 +241,22 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
             $("#stockfish_correct").html("<span class='move_correct'>&#10004;</span>");
         } else {
             $("#stockfish_correct").html("<span class='move_incorrect_sf'>&#x2717;</span>");
-            draw_board_arrow(sf_move, 'blue', black_active, true);
         }
-
         draw_board_arrow(dat['move'], 'green', black_active, false);
+        draw_board_arrow(sf_move, 'blue', black_active, true);
+
+
 
     game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
-
+        /*
     if (is_blunder) {
         $("#move_string").html('The player blundered and moved their <span class="move_desc_inline">' + player_move_descrip + '</span>' )
     } else {
         $("#move_string").html('The player made a good move, moving their <span class="move_desc_inline">' + player_move_descrip + '</span>')
     }
-
+    */
     $("#player_move").html()
-        $("#count_string").html("There were <span class='count_text'>" + dat["count"] + "</span> boards, out of <span class='count_text'>4,655,522</span> with this combination of models correct.")
+    //$("#count_string").html("There were <span class='count_text'>" + dat["count"] + "</span> boards, out of <span class='count_text'>4,655,522</span> with this combination of models correct.")
     //$("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
@@ -266,7 +267,7 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
         $("#move_string").text("")
         $("#explorer-board").html("<h3>No Board with these properties was found in our dataset</h3>")
         $("#fen_string").html('')
-        $("#count_string").html("There were <span class='count_text'>0</span> boards, out of <span class='count_text'>49,532,224</span> with this combination of models correct.")
+        //$("#count_string").html("There were <span class='count_text'>0</span> boards, out of <span class='count_text'>49,532,224</span> with this combination of models correct.")
         $("#cp_string").text("")
         $("#url_string").html("")
     }
