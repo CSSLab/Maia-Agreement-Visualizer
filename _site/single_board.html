@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <div class="explorer" style="background:rgb(255, 248, 231)">
+    <div class="explorer" style="background:#FFF8ED">
 <link rel="stylesheet" href="assets/chessboardjs/css/chessboard-1.0.0.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
 
-<div class="view-container" style="width:100vw">
+<div class="view-container" style="width:100vw;margin-left: 0px;margin-right: 0px;">
 
     <div class="model_vals_table">
         <table class="moves_table">
             <tr>
-                <th>Model</th>
-                <th>Move</th>
-                <th>Agreed</th>
+                <th style="font-size: 20pt;">Model</th>
+                <th style="font-size: 20pt;">Move</th>
+                <th style="font-size: 20pt;">Agreed</th>
             </tr>
             <tr>
                 <td><span class="stockfish_text">Stockfish</span></td>
@@ -82,13 +82,13 @@
 
         <div class="arrows-explanation" style="padding-top:2em">
             <div class="help-menu"><span class="arrow-human">&#8599;Human move / correct prediction</span></div>
-            <div class="help-menu"><span class="arrow-wrong">&#8599;  Incorrect Moves </span></div>
+            <div class="help-menu"><span class="arrow-wrong">&#8599;  Incorrect Predictions </span></div>
             <div class="help-menu"><span class="arrow-sf">&#8599; Stockfish</span></div>
 
         </div>
         <div id="board-container" class="board-container">
             <div id="board-svg-container" class="board-svg-container"></div>
-            <div id="explorer-board" class="explorer-board">
+            <div id="explorer-board" class="explorer-board" style="width: 500px">
                 <h2>Loading</h2>
                 <noscript>You need Javascript enabled to use this</noscript>
             </div>
