@@ -1,24 +1,15 @@
-<div class='explorer'>
+<div class='explorer' style="background:#FFF8ED">
 <link rel="stylesheet" href="assets/chessboardjs/css/chessboard-1.0.0.css" />
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
-<h1>Maia Prediction Visualizer</h1>
-<div class="intro-header" id="intro-header">
-<p id="intro-board-descr">
-In the position below, Maia levels <span class="maia_1100_text">1100</span>-<span class="maia_1400_text">1400</span> correctly predict that White will play the tempting but wrong move <span class="move_desc_inline">b6</span> (the move
- played in the game). It threatens the Queen, but after <span class ="move_desc_inline">Qxc5</span> White’s big advantage is mostly gone. Maia levels predict that, on average, players rated 1500 and above will play the correct <span class="move_desc_inline">bxa</span> <span class="maia_1500_text">1500</span>-<span class="maia_1900_text">1900</span>.
-</p>
-<p>
-    If you want to explore what boards at these decision boundaries look like you can press the "Explore More Boards" button then select different combinations of correct models, move characteristics and player rating below. A board and each model's predictions will be displayed.
-</p>
-</div>
-<div class="view-container">
+
+<div class="view-container" style="width:100vw;margin-left: 0px;margin-right: 0px;">
 
     <div class="model_vals_table">
         <table class="moves_table">
             <tr>
-                <th>Model</th>
-                <th>Move</th>
-                <th>Agreed</th>
+                <th style="font-size: 20pt;">Model</th>
+                <th style="font-size: 20pt;">Move</th>
+                <th style="font-size: 20pt;">Agreed</th>
             </tr>
             <tr>
                 <td><span class="stockfish_text">Stockfish</span></td>
@@ -39,7 +30,7 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
     <div class="board-display">
 
 
-        <div class="arrows-explanation">
+        <div class="arrows-explanation" style="padding-top:2em">
             <div class='help-menu'><span class="arrow-human">&#8599;Human move / correct prediction</span></div>
             <div class='help-menu'><span class="arrow-wrong">&#8599;  Incorrect Predictions </span></div>
             <div class='help-menu'><span class="arrow-sf">&#8599; Stockfish</span></div>
@@ -47,14 +38,14 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
         </div>
         <div id="board-container" class="board-container">
             <div id="board-svg-container" class="board-svg-container"></div>
-            <div id="explorer-board" class="explorer-board">
+            <div id="explorer-board" class="explorer-board"  style="width: 500px">
                 <h2>Loading</h2>
                 <noscript>You need Javascript enabled to use this</noscript>
             </div>
         </div>
 
     </div>
-    <div class="model_selection_column model_input_start">
+    <div class="model_selection_column" style="display: none;">
         <h3 class="starts_hidden">Select which models correctly predicted the players, player rating or moves and view an
             example chess board:</h3>
         <div class="model_input" id="start_button_holder">
@@ -111,6 +102,6 @@ In the position below, Maia levels <span class="maia_1100_text">1100</span>-<spa
 <script src="assets/js/chess.js"></script>
 <script src="assets/js/board-explorer-backend.js"></script>
 <script>
-    setup_explorer_board("{{ include.data_path }}")
+    setup_explorer_example_board()
 </script>
 </div>

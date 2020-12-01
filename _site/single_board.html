@@ -1,158 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <div class="explorer" style="background:#FFF8ED">
-<link rel="stylesheet" href="assets/chessboardjs/css/chessboard-1.0.0.css" />
+    <link rel="stylesheet" href="assets/chessboardjs/css/chessboard-1.0.0.css" />
+
 <link rel="stylesheet" href="assets/css/widget_boards.css" />
 
-<div class="view-container" style="width:100vw;margin-left: 0px;margin-right: 0px;">
-
-    <div class="model_vals_table">
-        <table class="moves_table">
-            <tr>
-                <th style="font-size: 20pt;">Model</th>
-                <th style="font-size: 20pt;">Move</th>
-                <th style="font-size: 20pt;">Agreed</th>
-            </tr>
-            <tr>
-                <td><span class="stockfish_text">Stockfish</span></td>
-                <td><span class="move_text" id="stockfish_move">loading</span></td>
-                <td id="stockfish_correct"></td>
-            </tr>
-            
-            
-            <tr>
-                <td><span class="maia_1100_text">Maia 1100</span></td>
-                <td><span class="move_text" id="maia_1100_move">loading</span></td>
-                <td id="maia_1100_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1200_text">Maia 1200</span></td>
-                <td><span class="move_text" id="maia_1200_move">loading</span></td>
-                <td id="maia_1200_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1300_text">Maia 1300</span></td>
-                <td><span class="move_text" id="maia_1300_move">loading</span></td>
-                <td id="maia_1300_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1400_text">Maia 1400</span></td>
-                <td><span class="move_text" id="maia_1400_move">loading</span></td>
-                <td id="maia_1400_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1500_text">Maia 1500</span></td>
-                <td><span class="move_text" id="maia_1500_move">loading</span></td>
-                <td id="maia_1500_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1600_text">Maia 1600</span></td>
-                <td><span class="move_text" id="maia_1600_move">loading</span></td>
-                <td id="maia_1600_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1700_text">Maia 1700</span></td>
-                <td><span class="move_text" id="maia_1700_move">loading</span></td>
-                <td id="maia_1700_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1800_text">Maia 1800</span></td>
-                <td><span class="move_text" id="maia_1800_move">loading</span></td>
-                <td id="maia_1800_correct"></td>
-            </tr>
-            
-            <tr>
-                <td><span class="maia_1900_text">Maia 1900</span></td>
-                <td><span class="move_text" id="maia_1900_move">loading</span></td>
-                <td id="maia_1900_correct"></td>
-            </tr>
-            
-        </table>
-    </div>
-
-    <div class="board-display">
-
-
-        <div class="arrows-explanation" style="padding-top:2em">
-            <div class="help-menu"><span class="arrow-human">&#8599;Human move / correct prediction</span></div>
-            <div class="help-menu"><span class="arrow-wrong">&#8599;  Incorrect Predictions </span></div>
-            <div class="help-menu"><span class="arrow-sf">&#8599; Stockfish</span></div>
-
-        </div>
-        <div id="board-container" class="board-container">
-            <div id="board-svg-container" class="board-svg-container"></div>
-            <div id="explorer-board" class="explorer-board" style="width: 500px">
-                <h2>Loading</h2>
-                <noscript>You need Javascript enabled to use this</noscript>
-            </div>
-        </div>
-
-    </div>
-    <div class="model_selection_column" style="display: none;">
-        <h3 class="starts_hidden">Select which models correctly predicted the players, player rating or moves and view an
-            example chess board:</h3>
-        <div class="model_input" id="start_button_holder">
-            <button class="button start_button" onclick="start_interactive()">Explore More Boards</button>
-        </div>
-        <div class="model_input starts_hidden">
-
-            For a players with rating: &nbsp;
-            <select name="player" class="elo-selector" id="player_elo" onchange="update_explorer(false)">
-                <option value="1100">1100</option>
-                <option value="1300" selected="selected">1300</option>
-                <option value="1500">1500</option>
-                <option value="1700">1700</option>
-                <option value="1900">1900</option>
-            </select>
-        </div>
-
-        <div class="model_input starts_hidden">
-            <p>Where the player &nbsp;</p>
-            <select name="player" class="blunder-selector" id="player_blunder" onchange="update_explorer(false)">
-                <option value="mistake" selected="selected">Made a mistake</option>
-                <option value="sf_wrong">Played suboptimal</option>
-                <option value="sf_correct">Played optimally</option>
-            </select>
-        </div>
-
-        <div class="model_input starts_hidden">
-            And the board had: Few
-            <input class="material-slider" type="range" min="0" max="13" value="12" id="material_count" oninput="update_explorer(true)" />
-            Many, pieces
-        </div>
-
-        <div class="model_input model_selector_input starts_hidden">
-            <p> The Maia models are correct from:</p>
-            <div class="model_selector_container">
-                <form class="model_form">
-                    <input class="model-slider" type="range" min="1100" max="1900" value="1400" step="100" id="model_slider" name="model_slider" oninput="update_explorer(false)" />
-                    <output for="model_slider" id="model_slider_label"></output>
-                    <span id="low-model" class="model_label label_1100 label_left"> 1100</span>
-                    <span id="high-model" class="model_label label_1900 label_right"> 1900</span>
-                    <input class="model-invert-button" type="button" value="Flip order" onclick="flip_order()" />
-                </form>
-
-            </div>
-        </div>
-
-    </div>
-</div>
-
 <script src="assets/js/jquery.js"></script>
+
 <script src="assets/chessboardjs/js/chessboard-1.0.0.js"></script>
+
 <script src="assets/js/chess.js"></script>
+
 <script src="assets/js/board-explorer-backend.js"></script>
-<script>
-    setup_explorer_example_board()
-</script>
+
+<div id="explorer-board" style="width: 100%;">
 </div>
+
+<script>
+    var board = Chessboard(
+        "explorer-board", {
+        position: 'r1b1kbnr/ppqn1ppp/2pp4/4p3/2PP4/2N1P1B1/PP3PPP/R2QKBNR b KQkq - 1 6',
+        draggable: false,
+        sparePieces: false,
+        dropOffBoard: 'trash',
+    });
+
+</script>
 
 
 </html>

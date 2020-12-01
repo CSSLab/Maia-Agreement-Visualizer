@@ -5,13 +5,13 @@ function move_to_san(fen, move) {
     return Chess(fen).move(move, { sloppy: true })['san']
 }
 
-var piece_lookup  = {
-    'p' : 'Pawn',
-    'n' : 'Knight',
-    'b' : 'Bishop',
-    'r' : 'Rook',
-    'q' : 'Queen',
-    'k' : 'King',
+var piece_lookup = {
+    'p': 'Pawn',
+    'n': 'Knight',
+    'b': 'Bishop',
+    'r': 'Rook',
+    'q': 'Queen',
+    'k': 'King',
 }
 
 var starting_fen = "2k1r1r1/1pqb1p2/p3pB1p/nPPpPnp1/8/2P2N2/2Q1BPPP/R4RK1 w - - 0 19"
@@ -107,7 +107,7 @@ function setup_explorer_board(data_file) {
     var material_count = 12
     all_boards = {
         '111100000': {
-            1300 : {
+            1300: {
                 true: {
                     false: {
                         12: dat_start
@@ -117,7 +117,7 @@ function setup_explorer_board(data_file) {
         }
     }
     update_explorer(true);
-    $.getJSON(data_file, function(data) {
+    $.getJSON(data_file, function (data) {
         all_boards = data;
         //Hand picked starting board
         all_boards[board_str][player_elo][is_blunder][sf_correct][material_count] = dat_start;
@@ -125,8 +125,9 @@ function setup_explorer_board(data_file) {
     });
 }
 
-function start_interactive(){
+function start_interactive() {
     $(".starts_hidden").removeClass("starts_hidden");
+    $(".model_input_start").removeClass("model_input_start");
 
     $("#start_button_holder").addClass("start_button_hidden");
     hide_intro = true;
@@ -171,7 +172,7 @@ function update_model_slider(target_elo) {
 
     slider_label.css({
         left: offset + "px",
-        "background-color" : "var(--maia-" + target_elo +"-color)",
+        "background-color": "var(--maia-" + target_elo + "-color)",
     })
 }
 
@@ -180,7 +181,7 @@ function update_explorer(complexity_changed) {
         $("#intro-board-descr").hide()
         hide_intro = false;
     }
-    var s ='';
+    var s = '';
 
     model_elo = $("#model_slider")[0].value
     if (flipped) {
@@ -191,7 +192,7 @@ function update_explorer(complexity_changed) {
 
     var s = ''
     for (var i = 0; i < 9; i++) {
-        if (i < model_elo_short ) {
+        if (i < model_elo_short) {
             s += flipped ? "0" : "1";
         } else {
             s += flipped ? "1" : "0";
@@ -229,7 +230,7 @@ function update_explorer(complexity_changed) {
 function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material_count) {
     try {
         dat = all_boards[board_str][player_elo][is_blunder][sf_correct][material_count];
-        var black_active =  dat['board'].search(" w ") > 1
+        var black_active = dat['board'].search(" w ") > 1
         var board = Chessboard(
             "explorer-board", {
             position: dat['board'],
@@ -239,13 +240,13 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
             //orientation: black_active ? 'black' : 'white' ,
         });
 
-        var style_str = "style='width: " + ($("#explorer-board").width() -8) + "px;height: " + $("#explorer-board").height() + "px;margin-bottom: " + (-$("#explorer-board").height() - 4)+ "px;'"
+        var style_str = "style='width: " + ($("#explorer-board").width() - 8) + "px;height: " + $("#explorer-board").height() + "px;margin-bottom: " + (-$("#explorer-board").height() - 4) + "px;'"
         $("#board-svg-container").html('<svg viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid slice" class="board-drawing" id="board-drawing-root"' + style_str + '><defs id="board-drawing-defs"></defs></svg >')
         player_move_descrip = move_to_description(dat['board'], dat['move']);
         for (var i = 0; i < 9; i++) {
             var m_str = 'maia_1' + (i + 1) + '00'
-            var e_move = dat[m_str +'_move']
-            $("#" + m_str + "_move").text(move_to_san(dat['board'],e_move));
+            var e_move = dat[m_str + '_move']
+            $("#" + m_str + "_move").text(move_to_san(dat['board'], e_move));
             //$("#" + m_str + "_conf").text(dat[m_str + '_p_rounded']);
             if (dat[m_str + "_correct"] == "True") {
                 $("#" + m_str + "_correct").html("<span class='move_correct'>&#10004;</span>");
@@ -267,7 +268,7 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
 
 
 
-    game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
+        game_str = "lichess.org/" + dat["game_id"] + "#" + dat["move_ply"]
         /*
     if (is_blunder) {
         $("#move_string").html('The player blundered and moved their <span class="move_desc_inline">' + player_move_descrip + '</span>' )
@@ -275,13 +276,13 @@ function switch_to_board(board_str, player_elo, is_blunder, sf_correct, material
         $("#move_string").html('The player made a good move, moving their <span class="move_desc_inline">' + player_move_descrip + '</span>')
     }
     */
-    $("#player_move").html()
-    //$("#count_string").html("There were <span class='count_text'>" + dat["count"] + "</span> boards, out of <span class='count_text'>4,655,522</span> with this combination of models correct.")
-    //$("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
+        $("#player_move").html()
+        //$("#count_string").html("There were <span class='count_text'>" + dat["count"] + "</span> boards, out of <span class='count_text'>4,655,522</span> with this combination of models correct.")
+        //$("#cp_string").text("The number of pawns the current player was advantaged by here is: " + dat["cp_rel"] + ".")
 
     } catch (err) {
         console.log(err)
-        var style_str = "style='height: " + $("#board-container").height()+ "px;'"
+        var style_str = "style='height: " + $("#board-container").height() + "px;'"
         $("#board-svg-container").html('')
 
         $("#move_string").text("")
@@ -322,7 +323,7 @@ function draw_board_arrow(move_str, colour, black_active, is_sf) {
     var def_y = delta_y / h * 6
 
     if (coords[1][0] > coords[0][0]) {
-        def_x = def_x  * -1
+        def_x = def_x * -1
     }
 
     if (coords[1][1] < coords[0][1]) {
@@ -356,10 +357,9 @@ function draw_board_arrow(move_str, colour, black_active, is_sf) {
     $("#board-svg-container").html($("#board-svg-container").html());
 }
 
-function move_to_coords(move_str){
+function move_to_coords(move_str) {
     var start = [move_str.charCodeAt(0) - 96, parseInt(move_str[1])];
     var end = [move_str.charCodeAt(2) - 96, parseInt(move_str[3])];
     return [start, end];
 }
-
 
