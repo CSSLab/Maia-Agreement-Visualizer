@@ -257,10 +257,11 @@ body {
 @media only screen and (min-width: 800px) {
   .start_button {
     min-width: 10vw;
+    margin-top: 200px;
   }
   .model_input_start {
-  max-width: 20vw;
-}
+    max-width: 20vw;
+  }
 }
 
 .start_button_hidden {

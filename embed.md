@@ -1,5 +1,5 @@
 ---
-layout: embed
+layout: default
 title: Maia Widgets
 ---
 
