@@ -13,7 +13,7 @@
         var targetElementContainer = document.querySelector('.explorer');
         var targetId = targetElementContainer.getAttribute('id');
 
-        if(!id || !id.length) {
+        if (!targetId || !targetId.length) {
             targetId = 'msr-chess-experience';
         }
 
@@ -31,7 +31,7 @@
     var debouncer = null;
 
     // Bind to load
-    //window.parent.addEventListener('load', sendContentDataToParent);
+    window.parent.addEventListener('load', sendContentDataToParent);
 
     // Bind to resize, debounce
     window.addEventListener('resize', function() {
