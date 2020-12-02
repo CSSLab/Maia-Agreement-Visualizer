@@ -31,7 +31,7 @@
     var debouncer = null;
 
     // Bind to load
-    window.parent.addEventListener('load', sendContentDataToParent);
+    //window.parent.addEventListener('load', sendContentDataToParent);
 
     // Bind to resize, debounce
     window.addEventListener('resize', function() {
