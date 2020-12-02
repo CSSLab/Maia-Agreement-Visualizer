@@ -628,3 +628,26 @@ input:checked + .diagonal_slider:after
 .highlight-maia_1900 {
   box-shadow: inset 0 0 3px 5px var(--maia-1900-color);
 }
+
+.explorer {
+    padding-bottom: 30px;
+}
+
+.intro-header {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.move_text,
+.move_desc_inline {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.moves_table > tbody > tr > th {
+    font-size: 1rem;
+}
+
+.start_button {
+    font-size: 1rem;
+}
