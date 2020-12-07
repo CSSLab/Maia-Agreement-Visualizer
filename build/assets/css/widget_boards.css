@@ -76,7 +76,18 @@ body {
   flex-direction: column;
 }
 
+
 @media only screen and (max-width: 800px) {
+  .model_selection_column {
+    font-size: .75rem;
+    width: 50%;
+  }
+  .view-container {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .view-container {
     flex-wrap: wrap;
   }
@@ -85,6 +96,10 @@ body {
   }
   .notation-322f9 {
     font-size: 12pt;
+  }
+  .model_selection_column {
+    font-size: 1rem;
+    width: 100%;
   }
 }
 
@@ -141,6 +156,8 @@ body {
 .model_selector_input > p {
   text-align: left;
 }
+
+
 
 .model_selector_container {
   display: block;
