@@ -132,7 +132,7 @@ function start_interactive() {
     $("#start_button_holder").addClass("start_button_hidden");
     hide_intro = true;
     update_explorer(true);
-
+    sendContentDataToParent();
 }
 
 function flip_order() {
